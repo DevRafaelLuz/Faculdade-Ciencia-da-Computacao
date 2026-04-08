@@ -1,0 +1,13 @@
+Implementar um sistema de cadastro de livros, contendo para cada
+livro cadastrado o nome do livro, o autor, o preço e a quantidade
+disponível. O cadastro utilizará uma estrutura de árvore binária,
+tendo como valor chave o nome do livro (utilizando sequência
+alfabética como critério).
+
+As operações para o cadastro são:
+
+    1) Inserir um novo livro
+    2) Buscar o livro
+    3) Alterar preço do livro
+    4) Alterar quantidade do livro
+    5) Apresentar uma listagem dos livros com percurso na árvore “in ordem”.
