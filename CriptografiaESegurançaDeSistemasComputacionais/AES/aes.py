@@ -1,5 +1,3 @@
-import hashlib
-
 s_box_string = '63 7c 77 7b f2 6b 6f c5 30 01 67 2b fe d7 ab 76' \
             'ca 82 c9 7d fa 59 47 f0 ad d4 a2 af 9c a4 72 c0' \
             'b7 fd 93 26 36 3f f7 cc 34 a5 e5 f1 71 d8 31 15' \
@@ -153,21 +151,6 @@ def unpad(data: bytes) -> bytes:
     padding_len = data[-1]
     return data[:-padding_len]
 
-# def get_aes_key(password: str) -> bytes:
-#     return hashlib.sha256(password.encode()).digest()
-
-# def encode_credentials(text: str, password: str) -> str:
-#     key = get_aes_key(password)
-#     data = pad(text.encode('utf-8'))
-#     ciphertext = bytearray()
-    
-#     for i in range(0, len(data), 16):
-#         block = data[i:i+16]
-#         cipher_block = aes_encryption(block, key) 
-#         ciphertext.extend(cipher_block)
-        
-#     return ciphertext.hex()
-
 def inv_sub_bytes(state):
     for r in range(len(state)):
         state[r] = [rs_box[state[r][c]] for c in range(len(state[0]))]
@@ -224,44 +207,3 @@ def aes_decryption(ciphertext: bytes, key: bytes) -> bytes:
     add_round_key(state, key_schedule, round=0)
 
     return bytes_from_state(state)
-
-# def decode_text(hex_cipher: str, password: str) -> str:
-#     key = get_aes_key(password)
-#     ciphertext = bytes.fromhex(hex_cipher)
-#     plaintext_bytes = bytearray()
-    
-#     for i in range(0, len(ciphertext), 16):
-#         block = ciphertext[i:i+16]
-#         decrypted_block = aes_decryption(block, key)
-#         plaintext_bytes.extend(decrypted_block)
-        
-#     return unpad(plaintext_bytes).decode('UTF-8')
-
-# def main():
-#     while True:
-#         option = input("1. Criptografar\n2. Descriptografar\n3. Sair\nEscolha uma opção: ")
-    
-#         if option == '1':
-#             text = input("Digite o texto: ")
-#             password = input("Senha: ")
-#             encrypted = encode_credentials(text, password)
-#             print(f"Resultado (Hex): {encrypted}")
-#         elif option == '2':
-#             hex_data = input("Cole o código Hex: ")
-#             password = input("Senha: ")
-#             try:
-#                 decrypted = decode_text(hex_data, password)
-
-#                 if decrypted:
-#                     print(f"Texto original: {decrypted}")
-#                 else:
-#                     print("Senha incorreta ou dados corrompidos.")
-#             except Exception:
-#                 print("Erro: Senha incorreta ou dados corrompidos.")
-#         elif option == '3':
-#             break
-#         else:
-#             print("Opção inválida!")
-
-# if __name__ == "__main__":
-#     main()
