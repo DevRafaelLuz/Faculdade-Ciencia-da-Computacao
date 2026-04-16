@@ -3,6 +3,7 @@ import sys, os, getpass
 from kdf import derive_key, generate_salt, generate_iv
 from cbc import encrypt_cbc, decrypt_cbc
 from file_io import write_encrypted, read_encrypted
+from teste import run_tests
 
 def cmd_cifrar(filepath: str):
     if not os.path.exists(filepath):
@@ -45,6 +46,10 @@ def cmd_decifrar(filepath: str):
         print("Senha incorreta ou arquivo corrompido!")
         sys.exit(1)
 
+def cmd_testar():
+    sucesso = run_tests()
+    sys.exit(0 if sucesso else 1)
+
 def main():
     command = sys.argv[1]
 
@@ -52,6 +57,8 @@ def main():
         cmd_cifrar(sys.argv[2])
     elif command == "decifrar" and len(sys.argv) == 3:
         cmd_decifrar(sys.argv[2])
+    elif command == "testar":
+        cmd_testar()
     else:
         print("Comando incorreto ou inválido!")
 
