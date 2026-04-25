@@ -22,11 +22,11 @@ def run_tests():
         result = aes_encryption(i['plaintext'], i['key'])
 
         if result == i['expected']:
-            print(f'[SUCESSO] {i['description']}')
+            print(f"[SUCESSO] {i['description']}")
         else:
-            print(f'[FALHA] {i['description']}')
-            print(f'esperado: {i['expected'].hex()}')
-            print(f'obtido: {result.hex()}')
+            print(f"[FALHA] {i['description']}")
+            print(f"esperado: {i['expected'].hex()}")
+            print(f"obtido: {result.hex()}")
             all_ok = False
     
     key = bytes.fromhex('000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f')

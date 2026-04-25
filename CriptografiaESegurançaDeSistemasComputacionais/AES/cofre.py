@@ -1,7 +1,6 @@
 import sys, os, getpass
 
-from kdf import derive_key, generate_salt, generate_iv
-from cbc import encrypt_cbc, decrypt_cbc
+from kdf import derive_key, generate_salt, generate_iv, encrypt_cbc, decrypt_cbc
 from file_io import write_encrypted, read_encrypted
 from teste import run_tests
 
